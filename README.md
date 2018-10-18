@@ -1,59 +1,21 @@
-# Node Native Extension Boilerplate
+## Nodejs native modules
 
-[![Build Status](https://travis-ci.org/fcanas/node-native-boilerplate.svg)](https://travis-ci.org/fcanas/node-native-boilerplate)
+Cloned and edited the repo https://github.com/fcanas/node-native-boilerplate.
+<br>
 
-A very approachable node native extension.
+## How it works
 
-This repository serves as a nearly minimal native extension built on [Nan](https://github.com/nodejs/nan) with enough tooling to also make it a great starting point for more complex projects.
+Basically we can have cpp code, aka native code, in our nodejs projects. We can compile the cpp code to a .node file and can import the .node file in out nodejs project. In this way we can make use of native code. The advantage is cpp is faster and it can take advantage of multithreading and lot of things like that.
+<br>
+We can make use of cpp modules, aka those written in cpp and build wrappers for them in nodejs. In this way we can reuse a lot of code. It will also be very performant as well.
+<br>
 
-## Building
-
-To compile the extension for the first time, run 
-
-```
-$ npm i
-$ npm run configure
-$ npm run build
-```
-
-All subsequent builds only need `npm run build`
-
-You can confirm everything built correctly by [running the test suite](#to-run-tests).
-
-### Working With the Extension Locally
-
-After building:
-
-```node
-$ node
-> var NativeExtension = require('./')
-undefined
-> NativeExtension.aString()
-'This is a thing.'
-> NativeExtension.aBoolean()
-false
-> NativeExtension.nothing()
-undefined
-> 
-```
-
-### To run tests:
-
-```
-$ npm test
-```
-
-or to run test continuously 
-
-```
-$ npm test -- watch
-```
-
-## The Parts
-
-File | Contents
--------------|----------------
-`NativeExtension.cc` | Represents the top level of the module. C++ constructs that are exposed to javascript are exported here
-`functions.cc` | Example top-level functions. These functions demonstrate how to build and return various js types.
-`index.js` | The main entry point for the node dependency
-`binding.gyp` | Describes your node native extention to the build system (`node-gyp`). As you add source files to the project, you should also add them to the binding file.
+This project has a file called **NativeExtension.cc**, this is our file which will have the cpp code. We are compiling this file using the node-gyp package from npm to native code. Look at the npm start command from the package.json It cleans the project, aka removes the build folder, then it configures,idk what it does there and then builds it. The .node file is in the release folder inside build.
+<br>
+We can then require it in any of our nodejs project and use it.
+<br>
+Follow this link
+<br>
+https://nodejs.org/api/addons.html#addons_building
+<br>
+for more information about making cpp files and compiling them to .node files.
