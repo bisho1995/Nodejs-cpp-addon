@@ -3,7 +3,8 @@
   "scripts": {
     "configure": "node-gyp configure",
     "build": "node-gyp build",
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node-gyp clean configure build && node scratchpad/index.js"
   },
   "devDependencies": {
     "nan": "^2.0.5",
